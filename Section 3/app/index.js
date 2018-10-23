@@ -31,6 +31,9 @@
     // get the payload, if any @TODO:what is a payload 
     var decoder = new stringDecoder('utf-8'); // a pretty common option as utf-8
     var buffer = '';
+    req.on('data',function(data){
+        buffer += decoder.write(data)
+    })
     
 
     // send response 
