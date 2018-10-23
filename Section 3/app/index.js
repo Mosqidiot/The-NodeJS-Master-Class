@@ -33,16 +33,24 @@
     var buffer = '';
     req.on('data',function(data){
         buffer += decoder.write(data)
-    })
+    });
+    req.on('end',function(data){
+        buffer += decoder.write(data);
+
+        // Send the response
+        res.end('Hello World\n');
+
+        // send response 
+        res.end('hello\n');
+
+
+        // Log the request path
+        console.log('Request received on path: '+trimmedPath+' with method:\n'+method+' and with this query string parameters'
+        ,queryStringObject, " receive with the header\n", headers);
+    });
     
 
-    // send response 
-    res.end('hello\n');
-
-
-    // Log the request path
-    console.log('Request received on path: '+trimmedPath+' with method:\n'+method+' and with this query string parameters'
-    ,queryStringObject, " receive with the header\n", headers);
+    
 
  });
 
